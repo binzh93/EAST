@@ -171,7 +171,7 @@ def detect_dataset(model, device, test_img_path, submit_path):
 	img_files = sorted([os.path.join(test_img_path, img_file) for img_file in img_files])
 	
 	for i, img_file in enumerate(img_files):
-		print('evaluating {} image'.format(i), end='\r')
+		# print('evaluating {} image'.format(i), end='\r')
 		boxes = detect(Image.open(img_file), model, device)
 		seq = []
 		if boxes is not None:
@@ -181,8 +181,19 @@ def detect_dataset(model, device, test_img_path, submit_path):
 
 
 if __name__ == '__main__':
-	img_path    = '../ICDAR_2015/test_img/img_2.jpg'
-	model_path  = './pths/east_vgg16.pth'
+	# img_path    = '../ICDAR_2015/test_img/img_2.jpg'
+	# model_path  = './pths/east_vgg16.pth'
+
+	# import pdb
+	# pdb.set_trace()
+
+	# img_path    = '/workspace/mnt/storage/zhubin/track/ocr/id5/test/img/img_106.jpg'
+	img_path    = 'images/photo.jpg'
+	# img_path    = '/workspace/mnt/storage/zhubin/track/ocr/id5/test/img/'
+	model_path  = './model_epoch_600.pth'
+	
+
+
 	res_img     = './res.bmp'
 	device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 	model = EAST().to(device)

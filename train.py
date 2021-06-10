@@ -18,7 +18,8 @@ def train(train_img_path, train_gt_path, pths_path, batch_size, lr, num_workers,
 	
 	criterion = Loss()
 	device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-	model = EAST()
+	# model = EAST()
+	model = EAST(pretrained=False)
 	data_parallel = False
 	if torch.cuda.device_count() > 1:
 		model = nn.DataParallel(model)
@@ -55,10 +56,17 @@ def train(train_img_path, train_gt_path, pths_path, batch_size, lr, num_workers,
 
 
 if __name__ == '__main__':
-	train_img_path = os.path.abspath('../ICDAR_2015/train_img')
-	train_gt_path  = os.path.abspath('../ICDAR_2015/train_gt')
+	# train_img_path = os.path.abspath('../ICDAR_2015/train_img')
+	# train_gt_path  = os.path.abspath('../ICDAR_2015/train_gt')
+
+	# train_img_path = os.path.abspath('/workspace/mnt/storage/zhubin/track/ocr/ICDAR13')
+	# train_gt_path  = os.path.abspath('/workspace/mnt/storage/zhubin/track/ocr/ICDAR13_gt')
+
+	train_img_path = os.path.abspath('/workspace/mnt/storage/zhubin/track/ocr/id5/train/img/')
+	train_gt_path  = os.path.abspath('/workspace/mnt/storage/zhubin/track/ocr/id5/train/gt/')
+
 	pths_path      = './pths'
-	batch_size     = 24 
+	batch_size     = 64 # 24 
 	lr             = 1e-3
 	num_workers    = 4
 	epoch_iter     = 600

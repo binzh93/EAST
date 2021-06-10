@@ -34,7 +34,11 @@ def eval_model(model_name, test_img_path, submit_path, save_flag=True):
 
 
 if __name__ == '__main__': 
-	model_name = './pths/east_vgg16.pth'
-	test_img_path = os.path.abspath('../ICDAR_2015/test_img')
+	# model_name = './pths/east_vgg16.pth'
+	# test_img_path = os.path.abspath('../ICDAR_2015/test_img')
+	
+	model_name = './model_epoch_600.pth'
+	test_img_path = os.path.abspath('/workspace/mnt/storage/zhubin/track/ocr/id5/test/img/')
+
 	submit_path = './submit'
 	eval_model(model_name, test_img_path, submit_path)
